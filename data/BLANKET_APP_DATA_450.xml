@@ -1,0 +1,1040 @@
+<tables>
+  <table tablename="bl_blanket_defs">
+    <sql><![CDATA[begin delete bl_blanket_defs where blanket_type_id in (select b.blanket_type_id from bl_blanket_defs b where b.apex_appl_id='450');
+ insert into bl_blanket_defs t 
+( active_from, active_to, apex_appl_id, apex_page_id, blanket_type_id, description, flow_id, key_words, old_type_id, owner, status, sub_description)
+ select 
+ to_date(x.active_from,'DD-MM-YYYY HH24:MI:SS') as active_from, to_date(x.active_to,'DD-MM-YYYY HH24:MI:SS') as active_to, x.apex_appl_id, x.apex_page_id, x.blanket_type_id, x.description, x.flow_id, x.key_words, x.old_type_id, x.owner, x.status, x.sub_description
+ from xmltable ('/table/tabledata/row' passing xmltype(:1) 
+ columns active_from varchar2(200) path 'column[@name eq "active_from"]'
+, active_to varchar2(200) path 'column[@name eq "active_to"]'
+, apex_appl_id varchar2(100) path 'column[@name eq "apex_appl_id"]'
+, apex_page_id varchar2(100) path 'column[@name eq "apex_page_id"]'
+, blanket_type_id number path 'column[@name eq "blanket_type_id"]'
+, description varchar2(200) path 'column[@name eq "description"]'
+, flow_id number path 'column[@name eq "flow_id"]'
+, key_words varchar2(1000) path 'column[@name eq "key_words"]'
+, old_type_id varchar2(100) path 'column[@name eq "old_type_id"]'
+, owner varchar2(100) path 'column[@name eq "owner"]'
+, status varchar2(10) path 'column[@name eq "status"]'
+, sub_description varchar2(1000) path 'column[@name eq "sub_description"]'
+) x; end;
+]]></sql>
+    <tabledata>
+      <row tablename="bl_blanket_defs">
+        <column name="active_from"/>
+        <column name="active_to"/>
+        <column name="apex_appl_id"><![CDATA[450]]></column>
+        <column name="apex_page_id"><![CDATA[450]]></column>
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="description"><![CDATA[Avisbestilling]]></column>
+        <column name="flow_id"><![CDATA[21116]]></column>
+        <column name="key_words"><![CDATA[Avis, abonnement, digital]]></column>
+        <column name="old_type_id"><![CDATA[BL45]]></column>
+        <column name="owner"><![CDATA[ØSC]]></column>
+        <column name="status"><![CDATA[AKTIV]]></column>
+        <column name="sub_description"><![CDATA[Anvendes til bestilling af avisabonnementer]]></column>
+      </row>
+    </tabledata>
+  </table>
+  <table tablename="bl_blanket_defs_fields">
+    <sql><![CDATA[begin delete bl_blanket_defs_fields where blanket_type_id in (select b.blanket_type_id from bl_blanket_defs b where b.apex_appl_id='450');
+ insert into bl_blanket_defs_fields t 
+( blanket_type_id, column_name, description, id)
+ select 
+ x.blanket_type_id, x.column_name, x.description, x.id
+ from xmltable ('/table/tabledata/row' passing xmltype(:1) 
+ columns blanket_type_id number path 'column[@name eq "blanket_type_id"]'
+, column_name varchar2(100) path 'column[@name eq "column_name"]'
+, description varchar2(200) path 'column[@name eq "description"]'
+, id number path 'column[@name eq "id"]'
+) x; end;
+]]></sql>
+    <tabledata>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="column_name"><![CDATA[APPROVER1]]></column>
+        <column name="description"><![CDATA[Godkender]]></column>
+        <column name="id"><![CDATA[21112]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="column_name"><![CDATA[APPROVER1_DATE]]></column>
+        <column name="description"><![CDATA[Godkendelsesdato]]></column>
+        <column name="id"><![CDATA[21113]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="column_name"><![CDATA[BLANKET_ID]]></column>
+        <column name="description"/>
+        <column name="id"><![CDATA[21100]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="column_name"><![CDATA[BLANKET_TYPE_ID]]></column>
+        <column name="description"/>
+        <column name="id"><![CDATA[21102]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="column_name"><![CDATA[CREATED_BY]]></column>
+        <column name="description"><![CDATA[Oprettet af]]></column>
+        <column name="id"><![CDATA[21104]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="column_name"><![CDATA[CREATED_DATE]]></column>
+        <column name="description"><![CDATA[Oprettelsesdato]]></column>
+        <column name="id"><![CDATA[21105]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="column_name"><![CDATA[CURRENT_OWNER]]></column>
+        <column name="description"><![CDATA[Ejer]]></column>
+        <column name="id"><![CDATA[21111]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="column_name"><![CDATA[DATE_ATTRIBUTE1]]></column>
+        <column name="description"><![CDATA[Startdato]]></column>
+        <column name="id"><![CDATA[21137]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="column_name"><![CDATA[DEPARTMENT]]></column>
+        <column name="description"><![CDATA[Organisation]]></column>
+        <column name="id"><![CDATA[21109]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="column_name"><![CDATA[LBNR]]></column>
+        <column name="description"><![CDATA[Blanketnr.]]></column>
+        <column name="id"><![CDATA[21103]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="column_name"><![CDATA[NUMBER_ATTRIBUTE1]]></column>
+        <column name="description"><![CDATA[Postnr.]]></column>
+        <column name="id"><![CDATA[21136]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="column_name"><![CDATA[PARRENT_ID]]></column>
+        <column name="description"/>
+        <column name="id"><![CDATA[21101]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="column_name"><![CDATA[REGARDING]]></column>
+        <column name="description"><![CDATA[Modtager/vedrørende]]></column>
+        <column name="id"><![CDATA[21108]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="column_name"><![CDATA[STATUS]]></column>
+        <column name="description"/>
+        <column name="id"><![CDATA[21114]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="column_name"><![CDATA[STATUS_DATE]]></column>
+        <column name="description"/>
+        <column name="id"><![CDATA[21115]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="column_name"><![CDATA[SUPERVISOR]]></column>
+        <column name="description"><![CDATA[Medarbejders chef]]></column>
+        <column name="id"><![CDATA[21110]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="column_name"><![CDATA[TEXT_ATTRIBUTE1]]></column>
+        <column name="description"><![CDATA[Ønske]]></column>
+        <column name="id"><![CDATA[21126]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="column_name"><![CDATA[TEXT_ATTRIBUTE10]]></column>
+        <column name="description"><![CDATA[E-mailadresse]]></column>
+        <column name="id"><![CDATA[21135]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="column_name"><![CDATA[TEXT_ATTRIBUTE2]]></column>
+        <column name="description"><![CDATA[Avis]]></column>
+        <column name="id"><![CDATA[21127]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="column_name"><![CDATA[TEXT_ATTRIBUTE3]]></column>
+        <column name="description"><![CDATA[Avis - ved andet]]></column>
+        <column name="id"><![CDATA[21128]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="column_name"><![CDATA[TEXT_ATTRIBUTE4]]></column>
+        <column name="description"><![CDATA[Papir/digital]]></column>
+        <column name="id"><![CDATA[21129]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="column_name"><![CDATA[TEXT_ATTRIBUTE5]]></column>
+        <column name="description"><![CDATA[Modtager]]></column>
+        <column name="id"><![CDATA[21130]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="column_name"><![CDATA[TEXT_ATTRIBUTE6]]></column>
+        <column name="description"><![CDATA[Redaktion]]></column>
+        <column name="id"><![CDATA[21131]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="column_name"><![CDATA[TEXT_ATTRIBUTE7]]></column>
+        <column name="description"><![CDATA[Adresse]]></column>
+        <column name="id"><![CDATA[21132]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="column_name"><![CDATA[TEXT_ATTRIBUTE8]]></column>
+        <column name="description"><![CDATA[By]]></column>
+        <column name="id"><![CDATA[21133]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="column_name"><![CDATA[TEXT_ATTRIBUTE9]]></column>
+        <column name="description"><![CDATA[Bemærkning]]></column>
+        <column name="id"><![CDATA[21134]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="column_name"><![CDATA[UPDATED_BY]]></column>
+        <column name="description"><![CDATA[Opdateret af]]></column>
+        <column name="id"><![CDATA[21106]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[21097]]></column>
+        <column name="column_name"><![CDATA[UPDATED_DATE]]></column>
+        <column name="description"><![CDATA[Seneste opdatering]]></column>
+        <column name="id"><![CDATA[21107]]></column>
+      </row>
+    </tabledata>
+  </table>
+  <table tablename="bl_action_process">
+    <sql><![CDATA[begin delete bl_action_process where flow_id in (select b.flow_id from bl_blanket_defs b where b.apex_appl_id='450' and b.flow_id is not null);
+ insert into bl_action_process t 
+( action, alt_text, created_by, created_date, flow_id, flow_way, id, mail_bcc, mail_body, mail_cc, mail_from, mail_subject, mail_to, new_status, next_user, postaction, preaction, status, updated_by, updated_date)
+ select 
+ x.action, x.alt_text, x.created_by, to_date(x.created_date,'DD-MM-YYYY HH24:MI:SS') as created_date, x.flow_id, x.flow_way, x.id, x.mail_bcc, case when length(x.mail_body)=0 then null else x.mail_body end as mail_body, x.mail_cc, x.mail_from, x.mail_subject, x.mail_to, x.new_status, x.next_user, x.postaction, x.preaction, x.status, x.updated_by, to_date(x.updated_date,'DD-MM-YYYY HH24:MI:SS') as updated_date
+ from xmltable ('/table/tabledata/row' passing xmltype(:1) 
+ columns action varchar2(100) path 'column[@name eq "action"]'
+, alt_text varchar2(100) path 'column[@name eq "alt_text"]'
+, created_by varchar2(200) path 'column[@name eq "created_by"]'
+, created_date varchar2(200) path 'column[@name eq "created_date"]'
+, flow_id number path 'column[@name eq "flow_id"]'
+, flow_way varchar2(100) path 'column[@name eq "flow_way"]'
+, id number path 'column[@name eq "id"]'
+, mail_bcc varchar2(4000) path 'column[@name eq "mail_bcc"]'
+, mail_body clob path 'column[@name eq "mail_body"]'
+, mail_cc varchar2(4000) path 'column[@name eq "mail_cc"]'
+, mail_from varchar2(100) path 'column[@name eq "mail_from"]'
+, mail_subject varchar2(200) path 'column[@name eq "mail_subject"]'
+, mail_to varchar2(4000) path 'column[@name eq "mail_to"]'
+, new_status varchar2(4000) path 'column[@name eq "new_status"]'
+, next_user varchar2(4000) path 'column[@name eq "next_user"]'
+, postaction varchar2(1000) path 'column[@name eq "postaction"]'
+, preaction varchar2(1000) path 'column[@name eq "preaction"]'
+, status varchar2(100) path 'column[@name eq "status"]'
+, updated_by varchar2(200) path 'column[@name eq "updated_by"]'
+, updated_date varchar2(200) path 'column[@name eq "updated_date"]'
+) x; end;
+]]></sql>
+    <tabledata>
+      <row tablename="bl_action_process">
+        <column name="action"><![CDATA[APPROVE]]></column>
+        <column name="alt_text"/>
+        <column name="created_by"><![CDATA[XXBLANKET]]></column>
+        <column name="created_date"><![CDATA[22-03-2022 16:05:50]]></column>
+        <column name="flow_id"><![CDATA[21116]]></column>
+        <column name="flow_way"><![CDATA[ØSC]]></column>
+        <column name="id"><![CDATA[21124]]></column>
+        <column name="mail_bcc"/>
+        <column name="mail_body"><![CDATA[<style>
+        .std_light {
+        font-family: "DR Publik Light";
+    }
+    
+    .std_light_italic {
+        font-family: "DR Publik Light Italic";
+    }
+    
+    .std_light_semibold {
+        font-family: "DR Publik SemiBold";
+    }
+    
+    .std_light_semibold_italic {
+        font-family: "DR Publik SemiBold Italic";
+</style>
+<div class="std_light">
+    <h1>#SQL:getBlanketDescription(BLANKET_TYPE_ID).</h1>
+
+    <table align="left" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+            <tr><td class="std_light_semibold" style="width:150px">Blanketnr.:</td><td>#SQL:getFieldValue(LBNR).</td></tr>
+            <tr>
+                <td class="std_light_semibold" style="width:150px">Sendt dato:</td>
+                <td>#SQL:getFieldValue(CREATED_DATE).</td>
+            </tr>
+            <tr>
+                <td class="std_light_semibold" style="width:150px">Oprettet af:</td>
+                <td>#SQL:getUserFullName(CREATED_BY).</td>
+            </tr>
+            <tr>
+        </tbody>
+    </table>
+	
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+    
+	<table align="left" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+			<tr><td class="std_light_semibold" style="width:150px">Ønske:</td><td>#SQL:getLookupValue(TEXT_ATTRIBUTE1).</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE5),'-')='-' then '' else 'Modtager:' end z @</td><td>@SQL:DECODE(TEXT_ATTRIBUTE5,'DEPARTMENT',xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE6), DECODE(xxdr_blanket.getUserFullName(REGARDING),'NA','',xxdr_blanket.getUserFullName(REGARDING)))@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE2),'-')='-' then '' else 'Avis:' end z @</td><td>@SQL:DECODE(TEXT_ATTRIBUTE2,'Z-OTHER', INITCAP(TEXT_ATTRIBUTE3), TEXT_ATTRIBUTE2)@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE4),'-')='-' then '' else 'Abonnementstype:' end z @</td><td>@SQL:xxdr_blanket.getLookupValue(TEXT_ATTRIBUTE4)@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE9),'-')='-' then '' else 'Bem&aelig;rkninger:' end z @</td><td>@SQL:xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE9)@</td></tr>
+        </tbody>
+    </table>
+
+    <p>&nbsp;</p>
+	<p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <table align="left" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+             <tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(APPROVER1),'-')='-' then '' else 'Godkender' end z @</td><td>@SQL:DECODE(xxdr_blanket.getUserFullName(APPROVER1),'NA','',xxdr_blanket.getUserFullName(APPROVER1))@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(APPROVER1_DATE),'-')='-' then '' else 'Godkendelsesdato' end z @</td><td>@SQL:xxdr_blanket.getFieldValue(APPROVER1_DATE)@</td></tr>
+		</tbody>
+    </table>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <p class="std_light_italic"><a href="#SQL:getBlanketLink(BLANKET_ID).">Klik her for at se blanketten</a></p>
+
+    <p class="std_light_italic">*** Blanketter kan kun tilg&aring;s via en DR Computer, der er p&aring; DRs net eller koblet p&aring; via VPN.***
+        <br /> *** Dette er en autogenereret mail, og&nbsp;den kan ikke besvares. ***</p>
+
+</div>]]></column>
+        <column name="mail_cc"/>
+        <column name="mail_from"/>
+        <column name="mail_subject"><![CDATA[Du har modtaget en blanket til godkendelse (#SQL:getBlanketDescription(BLANKET_TYPE_ID).)]]></column>
+        <column name="mail_to"><![CDATA[ROLE:DR-OSC-AVISER]]></column>
+        <column name="new_status"><![CDATA[APPROVED]]></column>
+        <column name="next_user"><![CDATA[ROLE:DR-OSC-AVISER]]></column>
+        <column name="postaction"/>
+        <column name="preaction"/>
+        <column name="status"><![CDATA[CREATED]]></column>
+        <column name="updated_by"><![CDATA[XXBLANKET]]></column>
+        <column name="updated_date"><![CDATA[22-03-2022 16:05:50]]></column>
+      </row>
+      <row tablename="bl_action_process">
+        <column name="action"><![CDATA[CANCEL]]></column>
+        <column name="alt_text"/>
+        <column name="created_by"><![CDATA[XXBLANKET]]></column>
+        <column name="created_date"><![CDATA[22-03-2022 16:05:50]]></column>
+        <column name="flow_id"><![CDATA[21116]]></column>
+        <column name="flow_way"><![CDATA[Ingen]]></column>
+        <column name="id"><![CDATA[21118]]></column>
+        <column name="mail_bcc"/>
+        <column name="mail_body"><![CDATA[]]></column>
+        <column name="mail_cc"/>
+        <column name="mail_from"/>
+        <column name="mail_subject"/>
+        <column name="mail_to"/>
+        <column name="new_status"><![CDATA[CANCELLED]]></column>
+        <column name="next_user"><![CDATA[NULL]]></column>
+        <column name="postaction"/>
+        <column name="preaction"/>
+        <column name="status"><![CDATA[REJECTED]]></column>
+        <column name="updated_by"><![CDATA[XXBLANKET]]></column>
+        <column name="updated_date"><![CDATA[22-03-2022 16:05:50]]></column>
+      </row>
+      <row tablename="bl_action_process">
+        <column name="action"><![CDATA[CREATE]]></column>
+        <column name="alt_text"/>
+        <column name="created_by"><![CDATA[XXBLANKET]]></column>
+        <column name="created_date"><![CDATA[22-03-2022 16:05:50]]></column>
+        <column name="flow_id"><![CDATA[21116]]></column>
+        <column name="flow_way"><![CDATA[Godkender]]></column>
+        <column name="id"><![CDATA[21122]]></column>
+        <column name="mail_bcc"/>
+        <column name="mail_body"><![CDATA[<style>
+        .std_light {
+        font-family: "DR Publik Light";
+    }
+    
+    .std_light_italic {
+        font-family: "DR Publik Light Italic";
+    }
+    
+    .std_light_semibold {
+        font-family: "DR Publik SemiBold";
+    }
+    
+    .std_light_semibold_italic {
+        font-family: "DR Publik SemiBold Italic";
+</style>
+<div class="std_light">
+    <h1>#SQL:getBlanketDescription(BLANKET_TYPE_ID).</h1>
+
+    <table align="left" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+            <tr><td class="std_light_semibold" style="width:150px">Blanketnr.:</td><td>#SQL:getFieldValue(LBNR).</td></tr>
+            <tr>
+                <td class="std_light_semibold" style="width:150px">Sendt dato:</td>
+                <td>#SQL:getFieldValue(CREATED_DATE).</td>
+            </tr>
+            <tr>
+                <td class="std_light_semibold" style="width:150px">Oprettet af:</td>
+                <td>#SQL:getUserFullName(CREATED_BY).</td>
+            </tr>
+            <tr>
+        </tbody>
+    </table>
+	
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+    
+	<table align="left" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+			<tr><td class="std_light_semibold" style="width:150px">Ønske:</td><td>#SQL:getLookupValue(TEXT_ATTRIBUTE1).</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE5),'-')='-' then '' else 'Modtager:' end z @</td><td>@SQL:DECODE(TEXT_ATTRIBUTE5,'DEPARTMENT',xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE6), DECODE(xxdr_blanket.getUserFullName(REGARDING),'NA','',xxdr_blanket.getUserFullName(REGARDING)))@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE2),'-')='-' then '' else 'Avis:' end z @</td><td>@SQL:DECODE(TEXT_ATTRIBUTE2,'Z-OTHER', INITCAP(TEXT_ATTRIBUTE3), TEXT_ATTRIBUTE2)@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE4),'-')='-' then '' else 'Abonnementstype:' end z @</td><td>@SQL:xxdr_blanket.getLookupValue(TEXT_ATTRIBUTE4)@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE9),'-')='-' then '' else 'Bem&aelig;rkninger:' end z @</td><td>@SQL:xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE9)@</td></tr>
+        </tbody>
+    </table>
+
+    <p>&nbsp;</p>
+	<p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <table align="left" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+             <tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(APPROVER1),'-')='-' then '' else 'Godkender' end z @</td><td>@SQL:DECODE(xxdr_blanket.getUserFullName(APPROVER1),'NA','',xxdr_blanket.getUserFullName(APPROVER1))@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(APPROVER1_DATE),'-')='-' then '' else 'Godkendelsesdato' end z @</td><td>@SQL:xxdr_blanket.getFieldValue(APPROVER1_DATE)@</td></tr>
+		</tbody>
+    </table>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <p class="std_light_italic"><a href="#SQL:getBlanketLink(BLANKET_ID).">Klik her for at se blanketten</a></p>
+
+    <p class="std_light_italic">*** Blanketter kan kun tilg&aring;s via en DR Computer, der er p&aring; DRs net eller koblet p&aring; via VPN.***
+        <br /> *** Dette er en autogenereret mail, og&nbsp;den kan ikke besvares. ***</p>
+
+</div>]]></column>
+        <column name="mail_cc"/>
+        <column name="mail_from"/>
+        <column name="mail_subject"><![CDATA[Du har modtaget en blanket til behandling (#SQL:getBlanketDescription(BLANKET_TYPE_ID).)]]></column>
+        <column name="mail_to"><![CDATA[FIELD:
+    CASE
+        WHEN text_attribute1 = 'NEW' THEN
+            approver1
+        ELSE
+            (
+                SELECT
+                    email
+                FROM
+                    bl_roles
+                WHERE
+                    role = 'DR-OSC-AVISER'
+            )
+    END
+x]]></column>
+        <column name="new_status"><![CDATA[CREATED]]></column>
+        <column name="next_user"><![CDATA[case
+   WHEN TEXT_ATTRIBUTE1='NEW'  THEN APPROVER1
+   ELSE 'DR-OSC-AVISER'
+end x]]></column>
+        <column name="postaction"/>
+        <column name="preaction"/>
+        <column name="status"><![CDATA[NEW]]></column>
+        <column name="updated_by"><![CDATA[RUJO]]></column>
+        <column name="updated_date"><![CDATA[19-10-2023 10:49:15]]></column>
+      </row>
+      <row tablename="bl_action_process">
+        <column name="action"><![CDATA[EXECUTE]]></column>
+        <column name="alt_text"/>
+        <column name="created_by"><![CDATA[XXBLANKET]]></column>
+        <column name="created_date"><![CDATA[22-03-2022 16:05:50]]></column>
+        <column name="flow_id"><![CDATA[21116]]></column>
+        <column name="flow_way"><![CDATA[Ingen]]></column>
+        <column name="id"><![CDATA[21119]]></column>
+        <column name="mail_bcc"/>
+        <column name="mail_body"><![CDATA[<style>
+        .std_light {
+        font-family: "DR Publik Light";
+    }
+    
+    .std_light_italic {
+        font-family: "DR Publik Light Italic";
+    }
+    
+    .std_light_semibold {
+        font-family: "DR Publik SemiBold";
+    }
+    
+    .std_light_semibold_italic {
+        font-family: "DR Publik SemiBold Italic";
+</style>
+<div class="std_light">
+    <h1>#SQL:getBlanketDescription(BLANKET_TYPE_ID).</h1>
+
+    <table align="left" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+            <tr><td class="std_light_semibold" style="width:150px">Blanketnr.:</td><td>#SQL:getFieldValue(LBNR).</td></tr>
+            <tr>
+                <td class="std_light_semibold" style="width:150px">Sendt dato:</td>
+                <td>#SQL:getFieldValue(CREATED_DATE).</td>
+            </tr>
+            <tr>
+                <td class="std_light_semibold" style="width:150px">Oprettet af:</td>
+                <td>#SQL:getUserFullName(CREATED_BY).</td>
+            </tr>
+            <tr>
+        </tbody>
+    </table>
+	
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+    
+	<table align="left" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+			<tr><td class="std_light_semibold" style="width:150px">Ønske:</td><td>#SQL:getLookupValue(TEXT_ATTRIBUTE1).</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE5),'-')='-' then '' else 'Modtager:' end z @</td><td>@SQL:DECODE(TEXT_ATTRIBUTE5,'DEPARTMENT',xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE6), DECODE(xxdr_blanket.getUserFullName(REGARDING),'NA','',xxdr_blanket.getUserFullName(REGARDING)))@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE2),'-')='-' then '' else 'Avis:' end z @</td><td>@SQL:DECODE(TEXT_ATTRIBUTE2,'Z-OTHER', INITCAP(TEXT_ATTRIBUTE3), TEXT_ATTRIBUTE2)@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE4),'-')='-' then '' else 'Abonnementstype:' end z @</td><td>@SQL:xxdr_blanket.getLookupValue(TEXT_ATTRIBUTE4)@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE9),'-')='-' then '' else 'Bem&aelig;rkninger:' end z @</td><td>@SQL:xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE9)@</td></tr>
+        </tbody>
+    </table>
+
+    <p>&nbsp;</p>
+	<p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <table align="left" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+             <tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(APPROVER1),'-')='-' then '' else 'Godkender' end z @</td><td>@SQL:DECODE(xxdr_blanket.getUserFullName(APPROVER1),'NA','',xxdr_blanket.getUserFullName(APPROVER1))@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(APPROVER1_DATE),'-')='-' then '' else 'Godkendelsesdato' end z @</td><td>@SQL:xxdr_blanket.getFieldValue(APPROVER1_DATE)@</td></tr>
+		</tbody>
+    </table>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <p class="std_light_italic"><a href="#SQL:getBlanketLink(BLANKET_ID).">Klik her for at se blanketten</a></p>
+
+    <p class="std_light_italic">*** Blanketter kan kun tilg&aring;s via en DR Computer, der er p&aring; DRs net eller koblet p&aring; via VPN.***
+        <br /> *** Dette er en autogenereret mail, og&nbsp;den kan ikke besvares. ***</p>
+
+</div>]]></column>
+        <column name="mail_cc"/>
+        <column name="mail_from"/>
+        <column name="mail_subject"><![CDATA[Din blanket er færdigbehandlet (#SQL:getBlanketDescription(BLANKET_TYPE_ID).)]]></column>
+        <column name="mail_to"><![CDATA[FIELD:CREATED_BY]]></column>
+        <column name="new_status"><![CDATA[PROCESSED]]></column>
+        <column name="next_user"><![CDATA[NULL]]></column>
+        <column name="postaction"/>
+        <column name="preaction"/>
+        <column name="status"><![CDATA[APPROVED]]></column>
+        <column name="updated_by"><![CDATA[RUJO]]></column>
+        <column name="updated_date"><![CDATA[18-10-2023 13:50:00]]></column>
+      </row>
+      <row tablename="bl_action_process">
+        <column name="action"><![CDATA[EXECUTE]]></column>
+        <column name="alt_text"/>
+        <column name="created_by"><![CDATA[XXBLANKET]]></column>
+        <column name="created_date"><![CDATA[22-03-2022 16:05:50]]></column>
+        <column name="flow_id"><![CDATA[21116]]></column>
+        <column name="flow_way"><![CDATA[Opretter]]></column>
+        <column name="id"><![CDATA[21795]]></column>
+        <column name="mail_bcc"/>
+        <column name="mail_body"><![CDATA[<style>
+        .std_light {
+        font-family: "DR Publik Light";
+    }
+    
+    .std_light_italic {
+        font-family: "DR Publik Light Italic";
+    }
+    
+    .std_light_semibold {
+        font-family: "DR Publik SemiBold";
+    }
+    
+    .std_light_semibold_italic {
+        font-family: "DR Publik SemiBold Italic";
+</style>
+<div class="std_light">
+    <h1>#SQL:getBlanketDescription(BLANKET_TYPE_ID).</h1>
+
+    <table align="left" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+            <tr><td class="std_light_semibold" style="width:150px">Blanketnr.:</td><td>#SQL:getFieldValue(LBNR).</td></tr>
+            <tr>
+                <td class="std_light_semibold" style="width:150px">Sendt dato:</td>
+                <td>#SQL:getFieldValue(CREATED_DATE).</td>
+            </tr>
+            <tr>
+                <td class="std_light_semibold" style="width:150px">Oprettet af:</td>
+                <td>#SQL:getUserFullName(CREATED_BY).</td>
+            </tr>
+            <tr>
+        </tbody>
+    </table>
+	
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+    
+	<table align="left" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+			<tr><td class="std_light_semibold" style="width:150px">Ønske:</td><td>#SQL:getLookupValue(TEXT_ATTRIBUTE1).</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE5),'-')='-' then '' else 'Modtager:' end z @</td><td>@SQL:DECODE(TEXT_ATTRIBUTE5,'DEPARTMENT',xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE6), DECODE(xxdr_blanket.getUserFullName(REGARDING),'NA','',xxdr_blanket.getUserFullName(REGARDING)))@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE2),'-')='-' then '' else 'Avis:' end z @</td><td>@SQL:DECODE(TEXT_ATTRIBUTE2,'Z-OTHER', INITCAP(TEXT_ATTRIBUTE3), TEXT_ATTRIBUTE2)@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE4),'-')='-' then '' else 'Abonnementstype:' end z @</td><td>@SQL:xxdr_blanket.getLookupValue(TEXT_ATTRIBUTE4)@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE9),'-')='-' then '' else 'Bem&aelig;rkninger:' end z @</td><td>@SQL:xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE9)@</td></tr>
+        </tbody>
+    </table>
+
+    <p>&nbsp;</p>
+	<p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <table align="left" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+             <tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(APPROVER1),'-')='-' then '' else 'Godkender' end z @</td><td>@SQL:DECODE(xxdr_blanket.getUserFullName(APPROVER1),'NA','',xxdr_blanket.getUserFullName(APPROVER1))@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(APPROVER1_DATE),'-')='-' then '' else 'Godkendelsesdato' end z @</td><td>@SQL:xxdr_blanket.getFieldValue(APPROVER1_DATE)@</td></tr>
+		</tbody>
+    </table>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <p class="std_light_italic"><a href="#SQL:getBlanketLink(BLANKET_ID).">Klik her for at se blanketten</a></p>
+
+    <p class="std_light_italic">*** Blanketter kan kun tilg&aring;s via en DR Computer, der er p&aring; DRs net eller koblet p&aring; via VPN.***
+        <br /> *** Dette er en autogenereret mail, og&nbsp;den kan ikke besvares. ***</p>
+
+</div>]]></column>
+        <column name="mail_cc"/>
+        <column name="mail_from"/>
+        <column name="mail_subject"><![CDATA[Din blanket er færdigbehandlet (#SQL:getBlanketDescription(BLANKET_TYPE_ID).)]]></column>
+        <column name="mail_to"><![CDATA[FIELD:CREATED_BY]]></column>
+        <column name="new_status"><![CDATA[PROCESSED]]></column>
+        <column name="next_user"><![CDATA[NULL]]></column>
+        <column name="postaction"/>
+        <column name="preaction"/>
+        <column name="status"><![CDATA[CREATED]]></column>
+        <column name="updated_by"><![CDATA[RUJO]]></column>
+        <column name="updated_date"><![CDATA[18-10-2023 13:50:00]]></column>
+      </row>
+      <row tablename="bl_action_process">
+        <column name="action"><![CDATA[REJECT]]></column>
+        <column name="alt_text"/>
+        <column name="created_by"><![CDATA[XXBLANKET]]></column>
+        <column name="created_date"><![CDATA[22-03-2022 16:05:50]]></column>
+        <column name="flow_id"><![CDATA[21116]]></column>
+        <column name="flow_way"><![CDATA[Opretter]]></column>
+        <column name="id"><![CDATA[21125]]></column>
+        <column name="mail_bcc"/>
+        <column name="mail_body"><![CDATA[<style>
+        .std_light {
+        font-family: "DR Publik Light";
+    }
+    
+    .std_light_italic {
+        font-family: "DR Publik Light Italic";
+    }
+    
+    .std_light_semibold {
+        font-family: "DR Publik SemiBold";
+    }
+    
+    .std_light_semibold_italic {
+        font-family: "DR Publik SemiBold Italic";
+</style>
+<div class="std_light">
+    <h1>#SQL:getBlanketDescription(BLANKET_TYPE_ID).</h1>
+
+	<p class="std_light_semibold">Note ved afvisning:</p>
+	<p class="std_light_italic">@SQL:xxdr_mail_table.getlatestrejectmail(BLANKET_ID) @</p>
+
+    <table align="left" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+            <tr><td class="std_light_semibold" style="width:150px">Blanketnr.:</td><td>#SQL:getFieldValue(LBNR).</td></tr>
+            <tr>
+                <td class="std_light_semibold" style="width:150px">Sendt dato:</td>
+                <td>#SQL:getFieldValue(CREATED_DATE).</td>
+            </tr>
+            <tr>
+                <td class="std_light_semibold" style="width:150px">Oprettet af:</td>
+                <td>#SQL:getUserFullName(CREATED_BY).</td>
+            </tr>
+            <tr>
+        </tbody>
+    </table>
+	
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+    
+	<table align="left" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+			<tr><td class="std_light_semibold" style="width:150px">Ønske:</td><td>#SQL:getLookupValue(TEXT_ATTRIBUTE1).</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE5),'-')='-' then '' else 'Modtager:' end z @</td><td>@SQL:DECODE(TEXT_ATTRIBUTE5,'DEPARTMENT',xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE6), DECODE(xxdr_blanket.getUserFullName(REGARDING),'NA','',xxdr_blanket.getUserFullName(REGARDING)))@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE2),'-')='-' then '' else 'Avis:' end z @</td><td>@SQL:DECODE(TEXT_ATTRIBUTE2,'Z-OTHER', INITCAP(TEXT_ATTRIBUTE3), TEXT_ATTRIBUTE2)@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE4),'-')='-' then '' else 'Abonnementstype:' end z @</td><td>@SQL:xxdr_blanket.getLookupValue(TEXT_ATTRIBUTE4)@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE9),'-')='-' then '' else 'Bem&aelig;rkninger:' end z @</td><td>@SQL:xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE9)@</td></tr>
+        </tbody>
+    </table>
+
+    <p>&nbsp;</p>
+	<p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <table align="left" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+             <tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(APPROVER1),'-')='-' then '' else 'Godkender' end z @</td><td>@SQL:DECODE(xxdr_blanket.getUserFullName(APPROVER1),'NA','',xxdr_blanket.getUserFullName(APPROVER1))@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(APPROVER1_DATE),'-')='-' then '' else 'Godkendelsesdato' end z @</td><td>@SQL:xxdr_blanket.getFieldValue(APPROVER1_DATE)@</td></tr>
+		</tbody>
+    </table>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <p class="std_light_italic"><a href="#SQL:getBlanketLink(BLANKET_ID).">Klik her for at se blanketten</a></p>
+
+    <p class="std_light_italic">*** Blanketter kan kun tilg&aring;s via en DR Computer, der er p&aring; DRs net eller koblet p&aring; via VPN.***
+        <br /> *** Dette er en autogenereret mail, og&nbsp;den kan ikke besvares. ***</p>
+
+</div>]]></column>
+        <column name="mail_cc"/>
+        <column name="mail_from"/>
+        <column name="mail_subject"><![CDATA[Din blanket er afvist (#SQL:getBlanketDescription(BLANKET_TYPE_ID).)]]></column>
+        <column name="mail_to"><![CDATA[FIELD:CREATED_BY]]></column>
+        <column name="new_status"><![CDATA[REJECTED]]></column>
+        <column name="next_user"><![CDATA[CREATED_BY]]></column>
+        <column name="postaction"/>
+        <column name="preaction"/>
+        <column name="status"><![CDATA[APPROVED]]></column>
+        <column name="updated_by"><![CDATA[XXBLANKET]]></column>
+        <column name="updated_date"><![CDATA[06-06-2023 14:20:32]]></column>
+      </row>
+      <row tablename="bl_action_process">
+        <column name="action"><![CDATA[REJECT]]></column>
+        <column name="alt_text"/>
+        <column name="created_by"><![CDATA[XXBLANKET]]></column>
+        <column name="created_date"><![CDATA[22-03-2022 16:05:50]]></column>
+        <column name="flow_id"><![CDATA[21116]]></column>
+        <column name="flow_way"><![CDATA[Opretter]]></column>
+        <column name="id"><![CDATA[21117]]></column>
+        <column name="mail_bcc"/>
+        <column name="mail_body"><![CDATA[<style>
+        .std_light {
+        font-family: "DR Publik Light";
+    }
+    
+    .std_light_italic {
+        font-family: "DR Publik Light Italic";
+    }
+    
+    .std_light_semibold {
+        font-family: "DR Publik SemiBold";
+    }
+    
+    .std_light_semibold_italic {
+        font-family: "DR Publik SemiBold Italic";
+</style>
+<div class="std_light">
+    <h1>#SQL:getBlanketDescription(BLANKET_TYPE_ID).</h1>
+
+	<p class="std_light_semibold">Note ved afvisning:</p>
+	<p class="std_light_italic">@SQL:xxdr_mail_table.getlatestrejectmail(BLANKET_ID) @</p>
+
+    <table align="left" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+            <tr><td class="std_light_semibold" style="width:150px">Blanketnr.:</td><td>#SQL:getFieldValue(LBNR).</td></tr>
+            <tr>
+                <td class="std_light_semibold" style="width:150px">Sendt dato:</td>
+                <td>#SQL:getFieldValue(CREATED_DATE).</td>
+            </tr>
+            <tr>
+                <td class="std_light_semibold" style="width:150px">Oprettet af:</td>
+                <td>#SQL:getUserFullName(CREATED_BY).</td>
+            </tr>
+            <tr>
+        </tbody>
+    </table>
+	
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+    
+	<table align="left" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+			<tr><td class="std_light_semibold" style="width:150px">Ønske:</td><td>#SQL:getLookupValue(TEXT_ATTRIBUTE1).</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE5),'-')='-' then '' else 'Modtager:' end z @</td><td>@SQL:DECODE(TEXT_ATTRIBUTE5,'DEPARTMENT',xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE6), DECODE(xxdr_blanket.getUserFullName(REGARDING),'NA','',xxdr_blanket.getUserFullName(REGARDING)))@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE2),'-')='-' then '' else 'Avis:' end z @</td><td>@SQL:DECODE(TEXT_ATTRIBUTE2,'Z-OTHER', INITCAP(TEXT_ATTRIBUTE3), TEXT_ATTRIBUTE2)@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE4),'-')='-' then '' else 'Abonnementstype:' end z @</td><td>@SQL:xxdr_blanket.getLookupValue(TEXT_ATTRIBUTE4)@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE9),'-')='-' then '' else 'Bem&aelig;rkninger:' end z @</td><td>@SQL:xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE9)@</td></tr>
+        </tbody>
+    </table>
+
+    <p>&nbsp;</p>
+	<p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <table align="left" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+             <tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(APPROVER1),'-')='-' then '' else 'Godkender' end z @</td><td>@SQL:DECODE(xxdr_blanket.getUserFullName(APPROVER1),'NA','',xxdr_blanket.getUserFullName(APPROVER1))@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(APPROVER1_DATE),'-')='-' then '' else 'Godkendelsesdato' end z @</td><td>@SQL:xxdr_blanket.getFieldValue(APPROVER1_DATE)@</td></tr>
+		</tbody>
+    </table>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <p class="std_light_italic"><a href="#SQL:getBlanketLink(BLANKET_ID).">Klik her for at se blanketten</a></p>
+
+    <p class="std_light_italic">*** Blanketter kan kun tilg&aring;s via en DR Computer, der er p&aring; DRs net eller koblet p&aring; via VPN.***
+        <br /> *** Dette er en autogenereret mail, og&nbsp;den kan ikke besvares. ***</p>
+
+</div>]]></column>
+        <column name="mail_cc"/>
+        <column name="mail_from"/>
+        <column name="mail_subject"><![CDATA[Din blanket er afvist (#SQL:getBlanketDescription(BLANKET_TYPE_ID).)]]></column>
+        <column name="mail_to"><![CDATA[FIELD:CREATED_BY]]></column>
+        <column name="new_status"><![CDATA[REJECTED]]></column>
+        <column name="next_user"><![CDATA[CREATED_BY]]></column>
+        <column name="postaction"/>
+        <column name="preaction"/>
+        <column name="status"><![CDATA[CREATED]]></column>
+        <column name="updated_by"><![CDATA[XXBLANKET]]></column>
+        <column name="updated_date"><![CDATA[06-06-2023 14:20:32]]></column>
+      </row>
+      <row tablename="bl_action_process">
+        <column name="action"><![CDATA[REMIND]]></column>
+        <column name="alt_text"/>
+        <column name="created_by"><![CDATA[XXBLANKET]]></column>
+        <column name="created_date"><![CDATA[22-03-2022 16:05:50]]></column>
+        <column name="flow_id"><![CDATA[21116]]></column>
+        <column name="flow_way"><![CDATA[Ingen]]></column>
+        <column name="id"><![CDATA[21120]]></column>
+        <column name="mail_bcc"/>
+        <column name="mail_body"><![CDATA[<style>
+        .std_light {
+        font-family: "DR Publik Light";
+    }
+    
+    .std_light_italic {
+        font-family: "DR Publik Light Italic";
+    }
+    
+    .std_light_semibold {
+        font-family: "DR Publik SemiBold";
+    }
+    
+    .std_light_semibold_italic {
+        font-family: "DR Publik SemiBold Italic";
+</style>
+<div class="std_light">
+    <h1>#SQL:getBlanketDescription(BLANKET_TYPE_ID).</h1>
+
+    <table align="left" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+            <tr><td class="std_light_semibold" style="width:150px">Blanketnr.:</td><td>#SQL:getFieldValue(LBNR).</td></tr>
+            <tr>
+                <td class="std_light_semibold" style="width:150px">Sendt dato:</td>
+                <td>#SQL:getFieldValue(CREATED_DATE).</td>
+            </tr>
+            <tr>
+                <td class="std_light_semibold" style="width:150px">Oprettet af:</td>
+                <td>#SQL:getUserFullName(CREATED_BY).</td>
+            </tr>
+            <tr>
+        </tbody>
+    </table>
+	
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+    
+	<table align="left" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+			<tr><td class="std_light_semibold" style="width:150px">Ønske:</td><td>#SQL:getLookupValue(TEXT_ATTRIBUTE1).</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE5),'-')='-' then '' else 'Modtager:' end z @</td><td>@SQL:DECODE(TEXT_ATTRIBUTE5,'DEPARTMENT',xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE6), DECODE(xxdr_blanket.getUserFullName(REGARDING),'NA','',xxdr_blanket.getUserFullName(REGARDING)))@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE2),'-')='-' then '' else 'Avis:' end z @</td><td>@SQL:DECODE(TEXT_ATTRIBUTE2,'Z-OTHER', INITCAP(TEXT_ATTRIBUTE3), TEXT_ATTRIBUTE2)@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE4),'-')='-' then '' else 'Abonnementstype:' end z @</td><td>@SQL:xxdr_blanket.getLookupValue(TEXT_ATTRIBUTE4)@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE9),'-')='-' then '' else 'Bem&aelig;rkninger:' end z @</td><td>@SQL:xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE9)@</td></tr>
+        </tbody>
+    </table>
+
+    <p>&nbsp;</p>
+	<p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <table align="left" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+             <tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(APPROVER1),'-')='-' then '' else 'Godkender' end z @</td><td>@SQL:DECODE(xxdr_blanket.getUserFullName(APPROVER1),'NA','',xxdr_blanket.getUserFullName(APPROVER1))@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(APPROVER1_DATE),'-')='-' then '' else 'Godkendelsesdato' end z @</td><td>@SQL:xxdr_blanket.getFieldValue(APPROVER1_DATE)@</td></tr>
+		</tbody>
+    </table>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <p class="std_light_italic"><a href="#SQL:getBlanketLink(BLANKET_ID).">Klik her for at se blanketten</a></p>
+
+    <p class="std_light_italic">*** Blanketter kan kun tilg&aring;s via en DR Computer, der er p&aring; DRs net eller koblet p&aring; via VPN.***
+        <br /> *** Dette er en autogenereret mail, og&nbsp;den kan ikke besvares. ***</p>
+
+</div>]]></column>
+        <column name="mail_cc"/>
+        <column name="mail_from"/>
+        <column name="mail_subject"><![CDATA[Påmindelse: Du har tidligere modtaget en blanket til behandling (#SQL:getBlanketDescription(BLANKET_TYPE_ID).)]]></column>
+        <column name="mail_to"><![CDATA[FIELD:CURRENT_OWNER]]></column>
+        <column name="new_status"><![CDATA[NONE]]></column>
+        <column name="next_user"><![CDATA[NONE]]></column>
+        <column name="postaction"/>
+        <column name="preaction"/>
+        <column name="status"><![CDATA[ANY]]></column>
+        <column name="updated_by"><![CDATA[XXBLANKET]]></column>
+        <column name="updated_date"><![CDATA[22-03-2022 16:05:50]]></column>
+      </row>
+      <row tablename="bl_action_process">
+        <column name="action"><![CDATA[RESUBMIT]]></column>
+        <column name="alt_text"/>
+        <column name="created_by"><![CDATA[XXBLANKET]]></column>
+        <column name="created_date"><![CDATA[22-03-2022 16:05:50]]></column>
+        <column name="flow_id"><![CDATA[21116]]></column>
+        <column name="flow_way"><![CDATA[Godkender]]></column>
+        <column name="id"><![CDATA[21123]]></column>
+        <column name="mail_bcc"/>
+        <column name="mail_body"><![CDATA[<style>
+        .std_light {
+        font-family: "DR Publik Light";
+    }
+    
+    .std_light_italic {
+        font-family: "DR Publik Light Italic";
+    }
+    
+    .std_light_semibold {
+        font-family: "DR Publik SemiBold";
+    }
+    
+    .std_light_semibold_italic {
+        font-family: "DR Publik SemiBold Italic";
+</style>
+<div class="std_light">
+    <h1>#SQL:getBlanketDescription(BLANKET_TYPE_ID).</h1>
+
+    <table align="left" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+            <tr><td class="std_light_semibold" style="width:150px">Blanketnr.:</td><td>#SQL:getFieldValue(LBNR).</td></tr>
+            <tr>
+                <td class="std_light_semibold" style="width:150px">Sendt dato:</td>
+                <td>#SQL:getFieldValue(CREATED_DATE).</td>
+            </tr>
+            <tr>
+                <td class="std_light_semibold" style="width:150px">Oprettet af:</td>
+                <td>#SQL:getUserFullName(CREATED_BY).</td>
+            </tr>
+            <tr>
+        </tbody>
+    </table>
+	
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+    
+	<table align="left" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+			<tr><td class="std_light_semibold" style="width:150px">Ønske:</td><td>#SQL:getLookupValue(TEXT_ATTRIBUTE1).</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE5),'-')='-' then '' else 'Modtager:' end z @</td><td>@SQL:DECODE(TEXT_ATTRIBUTE5,'DEPARTMENT',xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE6), DECODE(xxdr_blanket.getUserFullName(REGARDING),'NA','',xxdr_blanket.getUserFullName(REGARDING)))@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE2),'-')='-' then '' else 'Avis:' end z @</td><td>@SQL:DECODE(TEXT_ATTRIBUTE2,'Z-OTHER', INITCAP(TEXT_ATTRIBUTE3), TEXT_ATTRIBUTE2)@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE4),'-')='-' then '' else 'Abonnementstype:' end z @</td><td>@SQL:xxdr_blanket.getLookupValue(TEXT_ATTRIBUTE4)@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE9),'-')='-' then '' else 'Bem&aelig;rkninger:' end z @</td><td>@SQL:xxdr_blanket.getFieldValue(TEXT_ATTRIBUTE9)@</td></tr>
+        </tbody>
+    </table>
+
+    <p>&nbsp;</p>
+	<p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <table align="left" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+             <tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(APPROVER1),'-')='-' then '' else 'Godkender' end z @</td><td>@SQL:DECODE(xxdr_blanket.getUserFullName(APPROVER1),'NA','',xxdr_blanket.getUserFullName(APPROVER1))@</td></tr>
+			<tr><td class="std_light_semibold" style="width:150px">@SQL: case when nvl(xxdr_blanket.getFieldValue(APPROVER1_DATE),'-')='-' then '' else 'Godkendelsesdato' end z @</td><td>@SQL:xxdr_blanket.getFieldValue(APPROVER1_DATE)@</td></tr>
+		</tbody>
+    </table>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <p class="std_light_italic"><a href="#SQL:getBlanketLink(BLANKET_ID).">Klik her for at se blanketten</a></p>
+
+    <p class="std_light_italic">*** Blanketter kan kun tilg&aring;s via en DR Computer, der er p&aring; DRs net eller koblet p&aring; via VPN.***
+        <br /> *** Dette er en autogenereret mail, og&nbsp;den kan ikke besvares. ***</p>
+
+</div>]]></column>
+        <column name="mail_cc"/>
+        <column name="mail_from"/>
+        <column name="mail_subject"><![CDATA[Du har modtaget en genfremsendt blanket til behandling (#SQL:getBlanketDescription(BLANKET_TYPE_ID).)]]></column>
+        <column name="mail_to"><![CDATA[FIELD:
+    CASE
+        WHEN text_attribute1 = 'NEW' THEN
+            approver1
+        ELSE
+            (
+                SELECT
+                    email
+                FROM
+                    bl_roles
+                WHERE
+                    role = 'DR-OSC-AVISER'
+            )
+    END
+x]]></column>
+        <column name="new_status"><![CDATA[CREATED]]></column>
+        <column name="next_user"><![CDATA[case
+   WHEN TEXT_ATTRIBUTE1='NEW'  THEN APPROVER1
+   ELSE 'DR-OSC-AVISER'
+end x]]></column>
+        <column name="postaction"/>
+        <column name="preaction"/>
+        <column name="status"><![CDATA[REJECTED]]></column>
+        <column name="updated_by"><![CDATA[RUJO]]></column>
+        <column name="updated_date"><![CDATA[19-10-2023 10:50:16]]></column>
+      </row>
+    </tabledata>
+  </table>
+  <table tablename="bl_flows">
+    <sql><![CDATA[begin delete bl_flows where flow_id in (select b.flow_id from bl_blanket_defs b where b.apex_appl_id='450' and b.flow_id is not null);
+ insert into bl_flows t 
+( description, flow_id)
+ select 
+ x.description, x.flow_id
+ from xmltable ('/table/tabledata/row' passing xmltype(:1) 
+ columns description varchar2(200) path 'column[@name eq "description"]'
+, flow_id number path 'column[@name eq "flow_id"]'
+) x; end;
+]]></sql>
+    <tabledata>
+      <row tablename="bl_flows">
+        <column name="description"><![CDATA[Avisbestilling]]></column>
+        <column name="flow_id"><![CDATA[21116]]></column>
+      </row>
+    </tabledata>
+  </table>
+</tables>

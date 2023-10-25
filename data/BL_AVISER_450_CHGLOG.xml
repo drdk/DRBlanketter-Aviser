@@ -1,0 +1,7 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+  <changeSet id="19C76BC95AC33BA539A98E7A9BF4B370" author="build" failOnError="true" runAlways="false">
+    <n0:runOracleScript objectName="BL_AVISER.DATA.450" ownerName="build" sourceType="STRING">
+      <n0:source><![CDATA[build import-data-generic ./data/BL_AVISER_450.xml]]></n0:source>
+    </n0:runOracleScript>
+  </changeSet>
+</databaseChangeLog>

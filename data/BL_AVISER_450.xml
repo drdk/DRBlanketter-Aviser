@@ -1,0 +1,84 @@
+<table tablename="bl_aviser">
+  <sql><![CDATA[begin delete bl_aviser 
+;
+ insert into bl_aviser t 
+( adresse, avis, cvr, e_mail_bestilling, ejer, id)
+ select 
+ x.adresse, x.avis, x.cvr, x.e_mail_bestilling, x.ejer, x.id
+ from xmltable ('/table/tabledata/row' passing xmltype(:1) 
+ columns adresse varchar2(4000) path 'column[@name eq "adresse"]'
+, avis varchar2(4000) path 'column[@name eq "avis"]'
+, cvr varchar2(4000) path 'column[@name eq "cvr"]'
+, e_mail_bestilling varchar2(255) path 'column[@name eq "e_mail_bestilling"]'
+, ejer varchar2(4000) path 'column[@name eq "ejer"]'
+, id number path 'column[@name eq "id"]'
+) x; end;
+]]></sql>
+  <tabledata>
+    <row tablename="bl_aviser">
+      <column name="adresse"><![CDATA[Pilestræde 34; 1147 København K
+]]></column>
+      <column name="avis"><![CDATA[Berlingske]]></column>
+      <column name="cvr"><![CDATA[29207313]]></column>
+      <column name="e_mail_bestilling"/>
+      <column name="ejer"><![CDATA[BERLINGSKE MEDIA A/S]]></column>
+      <column name="id"><![CDATA[220525794946468532086649050777531321667]]></column>
+    </row>
+    <row tablename="bl_aviser">
+      <column name="adresse"><![CDATA[Rådhuspladsen 37; 1785 København V]]></column>
+      <column name="avis"><![CDATA[Politiken]]></column>
+      <column name="cvr"><![CDATA[26933676]]></column>
+      <column name="e_mail_bestilling"/>
+      <column name="ejer"><![CDATA[JP/POLITIKENS HUS A/S]]></column>
+      <column name="id"><![CDATA[220525794946469741012468665406706027843]]></column>
+    </row>
+    <row tablename="bl_aviser">
+      <column name="adresse"><![CDATA[Rådhuspladsen 37; 1785 København V]]></column>
+      <column name="avis"><![CDATA[EkstraBladet]]></column>
+      <column name="cvr"><![CDATA[26933676]]></column>
+      <column name="e_mail_bestilling"/>
+      <column name="ejer"><![CDATA[JP/POLITIKENS HUS A/S]]></column>
+      <column name="id"><![CDATA[220525794946472158864107894665055440195]]></column>
+    </row>
+    <row tablename="bl_aviser">
+      <column name="adresse"><![CDATA[Store Kongensgade 40;1264 København K]]></column>
+      <column name="avis"><![CDATA[Information]]></column>
+      <column name="cvr"><![CDATA[63058416]]></column>
+      <column name="e_mail_bestilling"/>
+      <column name="ejer"><![CDATA[A/S INFORMATION]]></column>
+      <column name="id"><![CDATA[220525794946473367789927509294230146371]]></column>
+    </row>
+    <row tablename="bl_aviser">
+      <column name="adresse"><![CDATA[Mediebyen 3, 8000 Århus C]]></column>
+      <column name="avis"><![CDATA[Jyllands-Posten]]></column>
+      <column name="cvr"><![CDATA[26933676]]></column>
+      <column name="e_mail_bestilling"/>
+      <column name="ejer"><![CDATA[JP/POLITIKENS HUS A/S]]></column>
+      <column name="id"><![CDATA[220525794946474576715747123923404852547]]></column>
+    </row>
+    <row tablename="bl_aviser">
+      <column name="adresse"><![CDATA[Pilestræde 34; 1147 København K]]></column>
+      <column name="avis"><![CDATA[Weekendavisen]]></column>
+      <column name="cvr"><![CDATA[29207313]]></column>
+      <column name="e_mail_bestilling"/>
+      <column name="ejer"><![CDATA[BERLINGSKE MEDIA A/S]]></column>
+      <column name="id"><![CDATA[220525794946475785641566738552579558723]]></column>
+    </row>
+    <row tablename="bl_aviser">
+      <column name="adresse"><![CDATA[Møntergade 19;1116 København K]]></column>
+      <column name="avis"><![CDATA[Børsen]]></column>
+      <column name="cvr"><![CDATA[76156328]]></column>
+      <column name="e_mail_bestilling"/>
+      <column name="ejer"><![CDATA[DAGBLADET BØRSEN A/S]]></column>
+      <column name="id"><![CDATA[220525794946476994567386353181754264899]]></column>
+    </row>
+    <row tablename="bl_aviser">
+      <column name="adresse"><![CDATA[Vimmelskaftet 47, 2.;1161 København K]]></column>
+      <column name="avis"><![CDATA[Kristeligt Dagblad]]></column>
+      <column name="cvr"><![CDATA[17725114]]></column>
+      <column name="e_mail_bestilling"/>
+      <column name="ejer"><![CDATA[AKTIESELSKABET KRISTELIGT DAGBLAD]]></column>
+      <column name="id"><![CDATA[220525794946478203493205967810928971075]]></column>
+    </row>
+  </tabledata>
+</table>

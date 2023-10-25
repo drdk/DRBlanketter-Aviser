@@ -46,6 +46,7 @@ Har tidligere været en del af 127, men er nu flyttet til selvstændig app
 ## Forudsætninger
 
 Blanketsystemet
+Tabellen bl_aviser
 
 
 
